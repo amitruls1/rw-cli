@@ -1,0 +1,32 @@
+{
+  "name": "@amitruls1/rw-cli",
+  "version": "1.0.0",
+  "description": "A CLI to provide react and webpack snippets",
+  "main": "bin/rw-cli.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "cli",
+    "rw-cli",
+    "react",
+    "webpack"
+  ],
+  "author": "amitruls1",
+  "license": "MIT",
+  "bin": {
+    "@amitruls1/rw-cli": "bin/rw-cli.js",
+    "rw-cli": "bin/rw-cli.js"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "arg": "^5.0.1",
+    "esm": "^3.2.25",
+    "listr": "^0.14.3"
+  },
+  "devDependencies": {
+    "pkg-install": "^1.0.0"
+  }
+}
