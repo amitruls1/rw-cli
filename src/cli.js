@@ -12,20 +12,20 @@ function parseArgumentsIntoOptions(rawArgs) {
       "--install": Boolean,
       "--component": Boolean,
       "-C": "--component",
-      "-I": "--install"
+      "-I": "--install",
     },
     {
-      argv: rawArgs.slice(2)
+      argv: rawArgs.slice(2),
     }
   );
   return {
     install: args["--install"] || false,
     component: args["--component"] || false,
-    package: args._
+    package: args._,
   };
 }
 
-const validateOptions = options => {
+const validateOptions = (options) => {
   if (options.install && options.component) {
     throw "Can pass one command at a time";
   }
@@ -43,7 +43,6 @@ export function cli(args) {
     } else {
       executeCommand(options.package);
     }
-    console.log(options);
   } catch (e) {
     console.error(e);
   }
