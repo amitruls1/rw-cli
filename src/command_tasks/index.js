@@ -1,10 +1,10 @@
 import Listr from "listr";
 import { install } from "pkg-install";
+const term = require("terminal-kit").terminal;
 import { DEP_GRAPH, DEP_ENVIRONMENT } from "./dependancyGraph";
 import WEBPACK from "./webpack_tasks";
-import { verifyWebPackRelatedStuffs } from "./utility";
 
-const SUPPORTED_COMMANDS = ["webpack", "react", "scss", "css"];
+const SUPPORTED_COMMANDS = ["webpack", "react", "scss", "css", "babel"];
 
 const installingDependancies = async (item) =>
   await install(
@@ -36,35 +36,38 @@ const getPackageInstallationTasks = (commands) => {
 };
 
 const runWebPackFileChanges = (commands) => {
-  const { new_commands, webpackFilePath } = verifyWebPackRelatedStuffs(
-    commands
-  );
   let WEBPACK_CONFIGURATION = [];
-  new_commands.forEach((item) => {
+  commands.forEach((item) => {
     switch (item) {
       case "webpack":
-        WEBPACK_CONFIGURATION.push({
-          title: `Configuring ${item}`,
-          task: () => WEBPACK.executeWebPackConfiguration(webpackFilePath),
-        });
+        term.bold.underline.green(
+          `For ${item} Please create a file name with webpack.config.js or webpack.js and update with this snippet \n`
+        );
+        WEBPACK.executeWebPackConfiguration();
         break;
       case "react":
-        WEBPACK_CONFIGURATION.push({
-          title: `Configuring ${item}`,
-          task: () => WEBPACK.executeReactConfiguration(webpackFilePath),
-        });
+        term.bold.underline.green(
+          `For ${item} Please update your webpack file with this snippet \n`
+        );
+        WEBPACK.executeReactConfiguration();
         break;
       case "scss":
-        WEBPACK_CONFIGURATION.push({
-          title: `Configuring ${item}`,
-          task: () => WEBPACK.executeSCSSConfiguration(webpackFilePath),
-        });
+        term.bold.underline.green(
+          `For ${item} Please update your webpack file with this snippet \n`
+        );
+        WEBPACK.executeSCSSConfiguration();
         break;
       case "css":
-        WEBPACK_CONFIGURATION.push({
-          title: `Configuring ${item}`,
-          task: () => WEBPACK.executeCSSConfiguration(webpackFilePath),
-        });
+        term.bold.underline.green(
+          `For ${item} Please update your webpack file with this snippet \n`
+        );
+        WEBPACK.executeCSSConfiguration();
+        break;
+      case "babel":
+        term.bold.underline.green(
+          `For ${item} Please update your webpack file with this snippet \n`
+        );
+        WEBPACK.executeBabelConfiguration();
         break;
       default:
     }
@@ -74,13 +77,11 @@ const runWebPackFileChanges = (commands) => {
 
 export const runCommandTask = async (commands) => {
   const TOTAL_INSTALLATION = getPackageInstallationTasks(commands);
-  const WEBPACK_CONFIGURATION = runWebPackFileChanges(commands);
   const installation_tasks = new Listr(TOTAL_INSTALLATION);
-  const webpack_tasks = new Listr(WEBPACK_CONFIGURATION);
-  console.log("Installing Dependancies...");
+  term.bold.yellow("Installing Dependancies... \n");
   await installation_tasks.run();
-  console.log("Configuring Dependancies...");
-  await webpack_tasks.run();
+  term.bold.magenta("Printing Required Webpack Changes... \n");
+  runWebPackFileChanges(commands);
 };
 
 export const verifyCommands = (commands) => {
