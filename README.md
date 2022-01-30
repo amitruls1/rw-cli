@@ -7,7 +7,7 @@ rw-cli is npm cli package to install related dependancies of packages, providing
 Use the package manager [npm](https://www.npmjs.com/package/@amitruls1/rw-cli) to install rw-cli.
 
 ```bash
-npm install -g rw-cli
+npm install -g @amitruls1/rw-cli
 ```
 
 ## How to install packages
