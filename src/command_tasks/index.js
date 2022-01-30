@@ -40,25 +40,25 @@ const runWebPackFileChanges = (commands) => {
   commands.forEach((item) => {
     switch (item) {
       case "webpack":
-        term.bold.underline.green(
+        term.bold.underline.white(
           `For ${item} Please create a file name with webpack.config.js or webpack.js and update with this snippet \n`
         );
         WEBPACK.executeWebPackConfiguration();
         break;
       case "react":
-        term.bold.underline.green(
+        term.bold.underline.blue(
           `For ${item} Please update your webpack file with this snippet \n`
         );
         WEBPACK.executeReactConfiguration();
         break;
       case "scss":
-        term.bold.underline.green(
+        term.bold.underline.magenta(
           `For ${item} Please update your webpack file with this snippet \n`
         );
         WEBPACK.executeSCSSConfiguration();
         break;
       case "css":
-        term.bold.underline.green(
+        term.bold.underline.yellow(
           `For ${item} Please update your webpack file with this snippet \n`
         );
         WEBPACK.executeCSSConfiguration();
@@ -80,7 +80,7 @@ export const runCommandTask = async (commands) => {
   const installation_tasks = new Listr(TOTAL_INSTALLATION);
   term.bold.yellow("Installing Dependancies... \n");
   await installation_tasks.run();
-  term.bold.magenta("Printing Required Webpack Changes... \n");
+  term.bold.yellow("Printing Required Webpack Changes... \n");
   runWebPackFileChanges(commands);
 };
 
