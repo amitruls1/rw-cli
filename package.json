@@ -1,5 +1,5 @@
 {
-  "name": "@amitruls1/rw-cli",
+  "name": "rw-cli",
   "version": "1.0.0",
   "description": "A CLI to provide react and webpack snippets",
   "main": "bin/rw-cli.js",
@@ -10,7 +10,11 @@
     "cli",
     "rw-cli",
     "react",
-    "webpack"
+    "webpack",
+    "scss",
+    "babel",
+    "pagespeed",
+    "psi"
   ],
   "author": "amitruls1",
   "license": "MIT",
