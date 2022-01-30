@@ -1,5 +1,5 @@
 {
-  "name": "rw-cli",
+  "name": "@amitruls1/rw-cli",
   "version": "1.0.0",
   "description": "A CLI to provide react and webpack snippets",
   "main": "bin/rw-cli.js",
